@@ -100,11 +100,11 @@ jobs:
             promote-build-solution --publish_build_app $DEPLOY_FLAG $REBUILD_FLAG
           fi
 
-      - name: Create Tag for Release
+      - name: Create or Update Tag for Release
         if: success()
         run: |
           git config --global user.email "no-reply@github.com"
           git config --global user.name "GitHub Actions"
           APP_RELEASE_VERSION=$(jq -r '.version' app_details.json)
-          git tag -a "v${APP_RELEASE_VERSION}" -m "Release version ${APP_RELEASE_VERSION}"
-          git push origin "v${APP_RELEASE_VERSION}"
+          git tag -f -a "v${APP_RELEASE_VERSION}" -m "Release version ${APP_RELEASE_VERSION}"
+          git push origin "v${APP_RELEASE_VERSION}" --force

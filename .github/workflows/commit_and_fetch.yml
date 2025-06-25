@@ -17,6 +17,10 @@ jobs:
       SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
       TARGET_HOST_URL: ${{ secrets.TARGET_HOST_URL }}
       TARGET_TOKEN: ${{ secrets.TARGET_TOKEN }}
+      PROXY_USER: ${{ secrets.PROXY_USER }}
+      PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }} 
+      PROXY_HOST: ${{ secrets.PROXY_HOST }}
+      PROXY_PORT: ${{ secrets.PROXY_PORT }}
 
     steps:
       - name: Check out code

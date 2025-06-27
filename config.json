@@ -8,7 +8,7 @@
         "deployment_id": "0197ab98-5544-75c1-91c9-af16ccb2d63c"
     },
     "target": {
-        "org": "Instabase",
+        "org": "ib-internal",
         "workspace": "SolEng_workspace",
         "project_id": ""
     },

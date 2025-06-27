@@ -1,0 +1,36 @@
+{
+    "17402": {
+        "args": [
+            {
+                "data_type": "FIELD",
+                "name": "Name_of_Proprietor",
+                "value": "Name of Proprietor"
+            }
+        ],
+        "code": "    import re\n    if not isinstance(Name_of_Proprietor, str) or not Name_of_Proprietor.strip():\n        return 'Name of Proprietor cannot be empty or just whitespace.'\n    pattern = '^([A-Za-z]+(?: [A-Za-z]+)*(?: & [A-Za-z]+(?: [A-Za-z]+)*)*)$'\n    if not re.match(pattern, Name_of_Proprietor):\n        return \"Name of Proprietor must include at least one person's name and be in a valid format.\"\n    if ' & ' in Name_of_Proprietor and Name_of_Proprietor.count(' & ') > 1:\n        return \"Name of Proprietor cannot contain more than one '&'.\"\n    if ' and ' in Name_of_Proprietor:\n        return \"Name of Proprietor cannot contain 'and'. Use '&' instead.\"\n    return None",
+        "docstring": "    Validates that 'Name of Proprietor' includes at least one person's name.\n    \n    Args:\n        Name_of_Proprietor (str): The name of the proprietor, which should include at least one person's name.\n        context (optional): Additional context for validation, default is None.\n        **kwargs: Additional keyword arguments.\n    \n    Returns:\n        str: Specific and relevant error message if validation fails, otherwise None.",
+        "lambda_end_of_life": null,
+        "lambda_id": "96",
+        "lambda_udf_id": "v1:AWS_LAMBDA:1000680829:insan-use2-aihub-sandbox-docker-default-udf:4",
+        "last_updated_at": "1750924937000",
+        "name": "validate_proprietor_name",
+        "udf_type": "VALIDATIONS"
+    },
+    "17403": {
+        "args": [
+            {
+                "data_type": "FIELD",
+                "name": "Name_of_Proprietor",
+                "value": "Name of Proprietor"
+            }
+        ],
+        "code": "\t    if not Name_of_Proprietor:\n\t        return \"Error: 'Name of Proprietor' should not be empty.\"\n\t    return None",
+        "docstring": null,
+        "lambda_end_of_life": null,
+        "lambda_id": "96",
+        "lambda_udf_id": "v1:AWS_LAMBDA:1264257130:insan-use2-aihub-sandbox-docker-default-udf:4",
+        "last_updated_at": "1750925416000",
+        "name": "validate_proprietor_name",
+        "udf_type": "VALIDATIONS"
+    }
+}

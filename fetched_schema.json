@@ -1,0 +1,217 @@
+{
+    "225783": {
+        "description": "Tax form 1040 Schedule C, usually 2 pages",
+        "fields": {
+            "240424": {
+                "data_type": "TEXT_LIST",
+                "description": "Name of Proprietor, usually a first and last name, possibly including 2 or more people's names.  Return an empty list [] if blank.",
+                "lines": [
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "PROMPT",
+                        "native_fn_name": null,
+                        "prompt": "If 2 or more people's names are present, separate them out.  For example, [\"John & Jane Doe\"] would result in [\"John Doe\", \"Jane Doe\"]"
+                    },
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "NATIVE",
+                        "native_fn_name": "upper",
+                        "prompt": null
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Name of Proprietor",
+                "position": 0,
+                "prompt": "Name of Proprietor",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240441": {
+                "data_type": "TEXT",
+                "description": "If",
+                "lines": [
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "PROMPT",
+                        "native_fn_name": null,
+                        "prompt": "Return only the brief answers \"Profit\", \"Loss, all investment at risk\", or \"Loss, some investment not at risk\" as appropriate, nothing else."
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Profit or Loss",
+                "position": 1,
+                "prompt": "Determine if there was a Net profit or (loss).\n1. If there is a positive value on line 31, return \"Profit\"\n2. If the value on line 31 is negative (sometimes designated with parenthesis), it's a loss.\n3. If a loss, determine how much investment is at risk.  Based on the checkboxes on 32a and 32b, return \"Loss, all investment at risk\" or \"Loss, some investment not at risk\" respectively.",
+                "prompt_schema": null,
+                "prompt_type": "advanced"
+            }
+        },
+        "name": "1040 C"
+    },
+    "225855": {
+        "description": "",
+        "fields": {
+            "240442": {
+                "data_type": "VISION",
+                "description": "Document class",
+                "lines": [],
+                "model_type": "ADVANCED",
+                "name": "Document class",
+                "position": 0,
+                "prompt": "Describe what kind of document/image this is in succinct terms.",
+                "prompt_schema": null,
+                "prompt_type": "advanced"
+            }
+        },
+        "name": "Other"
+    },
+    "225856": {
+        "description": "",
+        "fields": {
+            "240433": {
+                "data_type": "TEXT",
+                "description": null,
+                "lines": [
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "NATIVE",
+                        "native_fn_name": "proper",
+                        "prompt": null
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Billing Company Name",
+                "position": 0,
+                "prompt": "Billing Company Name",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240434": {
+                "data_type": "TEXT",
+                "description": null,
+                "lines": [
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "NATIVE",
+                        "native_fn_name": "proper",
+                        "prompt": null
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Billing Company Address",
+                "position": 1,
+                "prompt": "Billing Company Address",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240435": {
+                "data_type": "TEXT",
+                "description": null,
+                "lines": [
+                    {
+                        "function_args": [
+                            {
+                                "data_type": "TEXT",
+                                "name": "input__format",
+                                "value": "\"\""
+                            },
+                            {
+                                "data_type": "TEXT",
+                                "name": "output__format",
+                                "value": "\"yyyymmdd\""
+                            }
+                        ],
+                        "function_id": null,
+                        "line_type": "NATIVE",
+                        "native_fn_name": "format_date",
+                        "prompt": null
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Invoice Date",
+                "position": 2,
+                "prompt": "Invoice Date",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240436": {
+                "data_type": "TEXT",
+                "description": null,
+                "lines": [],
+                "model_type": "DEFAULT",
+                "name": "Invoice Number",
+                "position": 3,
+                "prompt": "Invoice Number",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240437": {
+                "data_type": "TEXT",
+                "description": "Bill To Customer or Company Name",
+                "lines": [
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "NATIVE",
+                        "native_fn_name": "proper",
+                        "prompt": null
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Bill To Name",
+                "position": 4,
+                "prompt": "Bill To Customer or Company Name",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240438": {
+                "data_type": "TEXT",
+                "description": "Client or Bill To Address",
+                "lines": [],
+                "model_type": "DEFAULT",
+                "name": "Bill To Address",
+                "position": 5,
+                "prompt": "Client or Bill To Address",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240439": {
+                "data_type": "TEXT",
+                "description": "Invoice Total with currency",
+                "lines": [
+                    {
+                        "function_args": [],
+                        "function_id": null,
+                        "line_type": "PROMPT",
+                        "native_fn_name": null,
+                        "prompt": "Format as currency with currency ISO code in the following format.\n\nISO CODE XX.XX"
+                    }
+                ],
+                "model_type": "DEFAULT",
+                "name": "Invoice Total",
+                "position": 6,
+                "prompt": "Invoice Total with currency",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            },
+            "240440": {
+                "data_type": "TABLE",
+                "description": null,
+                "lines": [],
+                "model_type": "DEFAULT",
+                "name": "Line Items",
+                "position": 7,
+                "prompt": "Line Items",
+                "prompt_schema": null,
+                "prompt_type": "basic"
+            }
+        },
+        "name": "Invoice"
+    },
+    "last_edited_at": "1750926462000",
+    "last_edited_class_at": "1750925463000"
+}

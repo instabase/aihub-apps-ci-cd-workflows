@@ -1,0 +1,70 @@
+{
+    "last_updated": 1750925511000,
+    "rules": [
+        {
+            "affected_fields": [
+                240424
+            ],
+            "alert_level": "FAILURE",
+            "created_at": 1750925328000,
+            "description": "Validation prompt",
+            "id": 13706,
+            "input_fields": [
+                240424
+            ],
+            "name": "Rule 1",
+            "params": {
+                "udf_id": 17403
+            },
+            "scope": "FIELD",
+            "type": "UDF",
+            "updated_at": 1750925418000
+        },
+        {
+            "affected_fields": [],
+            "alert_level": "FAILURE",
+            "created_at": 1750925489000,
+            "description": "Classification validation",
+            "id": 13707,
+            "input_fields": [],
+            "name": "Rule 2",
+            "params": {
+                "affected_classes": [],
+                "confidence_threshold": 0.9
+            },
+            "scope": "PROJECT",
+            "type": "CLASS_CONFIDENCE",
+            "updated_at": 1750925489000
+        },
+        {
+            "affected_fields": [],
+            "alert_level": "FAILURE",
+            "created_at": 1750925501000,
+            "description": "",
+            "id": 13708,
+            "input_fields": [],
+            "name": "Rule 3",
+            "params": {
+                "confidence_threshold": 0.91
+            },
+            "scope": "PROJECT",
+            "type": "CONFIDENCE",
+            "updated_at": 1750925501000
+        },
+        {
+            "affected_fields": [],
+            "alert_level": "FAILURE",
+            "created_at": 1750925511000,
+            "description": "",
+            "id": 13709,
+            "input_fields": [],
+            "name": "Rule 4",
+            "params": {
+                "confidence_threshold": 0.92
+            },
+            "scope": "PROJECT",
+            "type": "OCR_CONFIDENCE",
+            "updated_at": 1750925511000
+        }
+    ]
+}

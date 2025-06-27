@@ -1,0 +1,429 @@
+{
+    "project_data": {
+        "activeDeployedSolutionId": "9ecf70c7-16a6-417f-bff2-5da3f3b2981f",
+        "createdAtMs": "1750921752000",
+        "creationBase": "NONE",
+        "dataMountPath": "instabase-sandbox-org/nathaniel.watkins.aihubsandbox_instabase.com/fs/Instabase Drive/aihub/0197ab11-a911-7bee-aa4b-a4f654114d08",
+        "description": "New project",
+        "extractionMode": "SPLIT_CLASSIFICATION",
+        "id": "0197ab11-a911-7bee-aa4b-a4f654114d08",
+        "llm": "gpt-3.5-turbo",
+        "name": "CICD Test project - NW",
+        "owner": "a561f5a9-f49e-4b84-9083-122bc397af42",
+        "ownerPublicId": "nathaniel.watkins.aihubsandbox_instabase.com",
+        "projectMountPath": "instabase-sandbox-org/nathaniel.watkins.aihubsandbox_instabase.com/fs/Instabase Drive/aihub/0197ab11-a911-7bee-aa4b-a4f654114d08",
+        "repoId": "e8d657e9-93b3-42af-b331-ab9ada7df1cd",
+        "schemaVersion": "1",
+        "settings": {
+            "advanced_ocr": {
+                "isChangeLanguageType": false,
+                "isSelectCheckboxes": true,
+                "isSelectFileAsImage": false,
+                "isSelectTables": true,
+                "languageType": "standard",
+                "nativeExcelProcessing": true,
+                "pagesText": "",
+                "splitByPage": false,
+                "version": "v1"
+            }
+        },
+        "type": "BUILD",
+        "updatedAtMs": "1750926013000",
+        "workspace": "nathaniel.watkins.aihubsandbox_instabase.com"
+    },
+    "project_schema": {
+        "case_fields": [],
+        "classes": {
+            "1040 C": {
+                "class_id": "225783",
+                "description": "Tax form 1040 Schedule C, usually 2 pages",
+                "fields": [
+                    {
+                        "data_type": "TEXT_LIST",
+                        "description": "Name of Proprietor, usually a first and last name, possibly including 2 or more people's names.  Return an empty list [] if blank.",
+                        "field_id": "240424",
+                        "lines": [
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "PROMPT",
+                                "native_fn_name": null,
+                                "prompt": "If 2 or more people's names are present, separate them out.  For example, [\"John & Jane Doe\"] would result in [\"John Doe\", \"Jane Doe\"]"
+                            },
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "NATIVE",
+                                "native_fn_name": "upper",
+                                "prompt": null
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Name of Proprietor",
+                        "position": 0,
+                        "prompt": "Name of Proprietor",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": "If",
+                        "field_id": "240441",
+                        "lines": [
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "PROMPT",
+                                "native_fn_name": null,
+                                "prompt": "Return only the brief answers \"Profit\", \"Loss, all investment at risk\", or \"Loss, some investment not at risk\" as appropriate, nothing else."
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Profit or Loss",
+                        "position": 1,
+                        "prompt": "Determine if there was a Net profit or (loss).\n1. If there is a positive value on line 31, return \"Profit\"\n2. If the value on line 31 is negative (sometimes designated with parenthesis), it's a loss.\n3. If a loss, determine how much investment is at risk.  Based on the checkboxes on 32a and 32b, return \"Loss, all investment at risk\" or \"Loss, some investment not at risk\" respectively.",
+                        "prompt_schema": null,
+                        "prompt_type": "advanced"
+                    }
+                ]
+            },
+            "Invoice": {
+                "class_id": "225856",
+                "description": "",
+                "fields": [
+                    {
+                        "data_type": "TEXT",
+                        "description": null,
+                        "field_id": "240433",
+                        "lines": [
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "NATIVE",
+                                "native_fn_name": "proper",
+                                "prompt": null
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Billing Company Name",
+                        "position": 0,
+                        "prompt": "Billing Company Name",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": null,
+                        "field_id": "240434",
+                        "lines": [
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "NATIVE",
+                                "native_fn_name": "proper",
+                                "prompt": null
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Billing Company Address",
+                        "position": 1,
+                        "prompt": "Billing Company Address",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": null,
+                        "field_id": "240435",
+                        "lines": [
+                            {
+                                "function_args": [
+                                    {
+                                        "data_type": "TEXT",
+                                        "name": "input__format",
+                                        "value": "\"\""
+                                    },
+                                    {
+                                        "data_type": "TEXT",
+                                        "name": "output__format",
+                                        "value": "\"yyyymmdd\""
+                                    }
+                                ],
+                                "function_id": null,
+                                "line_type": "NATIVE",
+                                "native_fn_name": "format_date",
+                                "prompt": null
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Invoice Date",
+                        "position": 2,
+                        "prompt": "Invoice Date",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": null,
+                        "field_id": "240436",
+                        "lines": [],
+                        "model_type": "DEFAULT",
+                        "name": "Invoice Number",
+                        "position": 3,
+                        "prompt": "Invoice Number",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": "Bill To Customer or Company Name",
+                        "field_id": "240437",
+                        "lines": [
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "NATIVE",
+                                "native_fn_name": "proper",
+                                "prompt": null
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Bill To Name",
+                        "position": 4,
+                        "prompt": "Bill To Customer or Company Name",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": "Client or Bill To Address",
+                        "field_id": "240438",
+                        "lines": [],
+                        "model_type": "DEFAULT",
+                        "name": "Bill To Address",
+                        "position": 5,
+                        "prompt": "Client or Bill To Address",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TEXT",
+                        "description": "Invoice Total with currency",
+                        "field_id": "240439",
+                        "lines": [
+                            {
+                                "function_args": [],
+                                "function_id": null,
+                                "line_type": "PROMPT",
+                                "native_fn_name": null,
+                                "prompt": "Format as currency with currency ISO code in the following format.\n\nISO CODE XX.XX"
+                            }
+                        ],
+                        "model_type": "DEFAULT",
+                        "name": "Invoice Total",
+                        "position": 6,
+                        "prompt": "Invoice Total with currency",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    },
+                    {
+                        "data_type": "TABLE",
+                        "description": null,
+                        "field_id": "240440",
+                        "lines": [],
+                        "model_type": "DEFAULT",
+                        "name": "Line Items",
+                        "position": 7,
+                        "prompt": "Line Items",
+                        "prompt_schema": null,
+                        "prompt_type": "basic"
+                    }
+                ]
+            },
+            "Other": {
+                "class_id": "225855",
+                "description": "",
+                "fields": [
+                    {
+                        "data_type": "VISION",
+                        "description": "Document class",
+                        "field_id": "240442",
+                        "lines": [],
+                        "model_type": "ADVANCED",
+                        "name": "Document class",
+                        "position": 0,
+                        "prompt": "Describe what kind of document/image this is in succinct terms.",
+                        "prompt_schema": null,
+                        "prompt_type": "advanced"
+                    }
+                ]
+            }
+        }
+    },
+    "project_udfs": {
+        "17403": {
+            "args": [
+                {
+                    "data_type": "FIELD",
+                    "name": "Name_of_Proprietor",
+                    "value": "Name of Proprietor"
+                }
+            ],
+            "code": "\n\ndef validate_proprietor_name(Name_of_Proprietor, context = {}, keys = {}, **kwargs):\n\t    if not Name_of_Proprietor:\n\t        return \"Error: 'Name of Proprietor' should not be empty.\"\n\t    return None",
+            "docstring": null,
+            "function_code": "\t    if not Name_of_Proprietor:\n\t        return \"Error: 'Name of Proprietor' should not be empty.\"\n\t    return None",
+            "id": 17403,
+            "lambda_udf_id": "v1:AWS_LAMBDA:1264257130:insan-use2-aihub-sandbox-docker-default-udf:4",
+            "most_recent_results_path": "instabase-sandbox-org/nathaniel.watkins.aihubsandbox_instabase.com/fs/Instabase Drive/aihub/0197ab11-a911-7bee-aa4b-a4f654114d08/project/modules/scripts/VALIDATIONS/252bfb6d-80b5-40a9-829d-f74eb810ccc5_output.json",
+            "name": "validate_proprietor_name",
+            "project_uuid": "0197ab11-a911-7bee-aa4b-a4f654114d08",
+            "return_type": "string",
+            "scripts_full_path": "instabase-sandbox-org/nathaniel.watkins.aihubsandbox_instabase.com/fs/Instabase Drive/aihub/0197ab11-a911-7bee-aa4b-a4f654114d08/project/modules/scripts/VALIDATIONS/252bfb6d-80b5-40a9-829d-f74eb810ccc5.json",
+            "type": "VALIDATIONS"
+        }
+    },
+    "project_validations": [
+        {
+            "affected_fields": [
+                240424
+            ],
+            "alert_level": "FAILURE",
+            "created_at": 1750925328000,
+            "description": "Validation prompt",
+            "id": 13706,
+            "input_fields": [
+                240424
+            ],
+            "name": "Rule 1",
+            "params": {
+                "udf_id": 17403
+            },
+            "scope": "FIELD",
+            "type": "UDF",
+            "updated_at": 1750925418000
+        },
+        {
+            "affected_fields": [],
+            "alert_level": "FAILURE",
+            "created_at": 1750925489000,
+            "description": "Classification validation",
+            "id": 13707,
+            "input_fields": [],
+            "name": "Rule 2",
+            "params": {
+                "affected_classes": [],
+                "confidence_threshold": 0.9
+            },
+            "scope": "PROJECT",
+            "type": "CLASS_CONFIDENCE",
+            "updated_at": 1750925489000
+        },
+        {
+            "affected_fields": [],
+            "alert_level": "FAILURE",
+            "created_at": 1750925501000,
+            "description": "",
+            "id": 13708,
+            "input_fields": [],
+            "name": "Rule 3",
+            "params": {
+                "confidence_threshold": 0.91
+            },
+            "scope": "PROJECT",
+            "type": "CONFIDENCE",
+            "updated_at": 1750925501000
+        },
+        {
+            "affected_fields": [],
+            "alert_level": "FAILURE",
+            "created_at": 1750925511000,
+            "description": "",
+            "id": 13709,
+            "input_fields": [],
+            "name": "Rule 4",
+            "params": {
+                "confidence_threshold": 0.92
+            },
+            "scope": "PROJECT",
+            "type": "OCR_CONFIDENCE",
+            "updated_at": 1750925511000
+        }
+    ],
+    "reader_profile": {
+        "createdBy": "",
+        "createdOn": 1750923310257,
+        "defaultProfile": "",
+        "foundationVersion": "",
+        "inputPath": null,
+        "lastModifiedBy": "",
+        "lastModifiedOn": 1750923310257,
+        "outputPath": null,
+        "profiles": [
+            {
+                "entitySettings": [],
+                "name": "aihub",
+                "readSettings": {
+                    "add_barcode_identifier": true,
+                    "cache_pdf_results": false,
+                    "correct_inversion": false,
+                    "correct_orientation": false,
+                    "correct_resolution": false,
+                    "correct_resolution_auto": false,
+                    "detect_barcodes": false,
+                    "detect_blurry_files": false,
+                    "dewarp_page": true,
+                    "document_mapping": "document_is_record_skip_empty_page",
+                    "enable_ibdoc_v2": true,
+                    "enable_paragraph_ordering": false,
+                    "enable_table_markdown_enrichment": false,
+                    "encryption_config": null,
+                    "entity_models": [
+                        {
+                            "model_name": "signature_model",
+                            "model_version": "0.0.4"
+                        },
+                        {
+                            "model_name": "barcode_qrcode_detection",
+                            "model_version": "1.0.0"
+                        }
+                    ],
+                    "extract_all_pdf_layers": false,
+                    "find_lines": false,
+                    "fonts": null,
+                    "force_image_ocr": true,
+                    "image_filters": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "layout_algorithm": "layout_algo_spatial",
+                    "model_specific_settings": {
+                        "marx_v1": {
+                            "version": "layout_v3"
+                        }
+                    },
+                    "native_excel_processing": true,
+                    "ocr_page_type": "marx",
+                    "ocr_timeout": null,
+                    "output_format_layout": "layout_per_page",
+                    "output_formats": null,
+                    "page_range_str": "",
+                    "preprocess_excel_files": false,
+                    "process_type": "auto_to_txt",
+                    "produce_metadata_list": true,
+                    "produce_word_metadata": true,
+                    "remove_boxes": false,
+                    "remove_boxes_over_height_percent": null,
+                    "remove_boxes_over_width_percent": null,
+                    "remove_space_wordpolys": true,
+                    "remove_vertical_text": false,
+                    "reorient_words": false,
+                    "repair_pdfs": false,
+                    "scripts_dir": "",
+                    "write_converted_image": true,
+                    "write_thumbnail": true
+                }
+            }
+        ],
+        "schema": "1"
+    }
+}

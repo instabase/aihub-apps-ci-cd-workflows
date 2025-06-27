@@ -1,0 +1,25 @@
+{
+    "appReleaseVersion": "",
+    "author": "nathaniel.watkins.aihubsandbox_instabase.com",
+    "contextAccount": "instabase-sandbox-org",
+    "createdAtMs": "1750927090000",
+    "description": "Initial release",
+    "id": "9ecf70c7-16a6-417f-bff2-5da3f3b2981f",
+    "isCustomizable": true,
+    "linkSharingMode": "OFF",
+    "metadata": "{\"authors\":[\"nathaniel.watkins.aihubsandbox_instabase.com\"],\"billing_model\":\"default\",\"has_project_snapshot\":true,\"icon\":\"icon.png\",\"is_copy_of_existing_app\":false,\"org_context_type\":\"ENTERPRISE\",\"project_id\":\"0197ab11-a911-7bee-aa4b-a4f654114d08\",\"results\":\"\",\"samples\":\"output/s1_process_files\",\"schema\":\"schema.json\"}",
+    "name": "CICD Test project - NW",
+    "owner": "nathaniel.watkins.aihubsandbox_instabase.com",
+    "ownerFullName": "Nathaniel Watkins",
+    "sharedAccounts": [
+        "instabase-sandbox-org"
+    ],
+    "solutionType": "EXTRACTION",
+    "solution_path": "system/global/fs/Instabase Drive/Applications/Deployed/All/9ecf70c7-16a6-417f-bff2-5da3f3b2981f",
+    "state": "PRODUCTION",
+    "summary": "Test project to test CICD pipeline",
+    "updateMode": "AUTO_UPDATE",
+    "updatedAtMs": "1750927170000",
+    "version": "0.0.1",
+    "visibility": "PRIVATE"
+}

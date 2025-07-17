@@ -85,7 +85,7 @@ To enable the CI/CD workflow, configure the following secrets in your GitHub rep
 - `dependencies`: if applicable
 
 ##### Common to All:
-- `app_id`: required (when migrating the app)
+- `app_id(source)`: required
 - `deployment_id`: optional
 - `org`: required
 - `workspace`: required

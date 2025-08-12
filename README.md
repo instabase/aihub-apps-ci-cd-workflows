@@ -10,7 +10,7 @@ The CI/CD workflows streamline the deployment of AI Hub applications across diff
 ### 1. Prerequisites
 Before you begin, ensure you have the following:
 
-- Tokens for both the source and target Instabase environments with access to the app and project.
+- Tokens for both the source and target Instabase environments with access to the app and project (service account tokens)
 - Access to the Instabase public repository `aihub-apps-ci-cd-workflows`.
   - If you have access, you can clone the repository directly.
   - If you do not have access, you need to manually add the workflows and `.whl` files to your repository. You can obtain these files by raising a Zendesk ticket.
@@ -52,7 +52,13 @@ To enable the CI/CD workflow, configure the following secrets in your GitHub rep
     "workspace": "<Source Workspace>",
     "app_id": "<App ID>",
     "deployment_id": "<Deployment ID>",
-    "dependencies": ["<dependency1>==<version>", "..."]
+    "dependencies": ["<dependency1>==<version>", "..."],
+    "app_details": {
+      "name": "<App Name>",
+      "version": "<Version>",
+      "description": "<Description>",
+      "release_notes": "<Release Notes for this app version>"
+    }
   },
   "target": {
     "org": "<Target Organization>",
@@ -67,35 +73,28 @@ To enable the CI/CD workflow, configure the following secrets in your GitHub rep
 }
 ```
 
-#### Explanation of Configuration Parameters:
-##### Build App:
-- `is_advanced: false`
-- `project_id`: required
-- `project_id(target)`: If the build project already exists in the target and you want to make changes in the same project
+#### Configuration Parameters:
 
-##### Advanced App:
-- `is_advanced: true`
-- `flow_path`: required
-- `dependencies`: if applicable
+**App Types:**
+- **Build App**: Set `is_advanced` to `false` and specify `project_id`.
+- **Advanced App**: Set `is_advanced` to `true` and specify `flow_path`.
+- **Solution Build App**: Set `is_advanced` to `true` and specify both `sb_name` and `flow_name`.
 
-##### Solution Build App:
-- `is_advanced: true`
-- `sb_name`: required
-- `flow_name`: required
-- `dependencies`: if applicable
+**Mandatory for All Apps:**
+- `org` and `workspace`: Required for both source and target environments.
+- `app_id`: Needed when migrating an app.
+- `deployment_id`: Needed when migrating a deployment.
 
-##### Common to All:
-- `app_id(source)`: required
-- `deployment_id`: optional
-- `org`: required
-- `workspace`: required
+**Optional Settings:**
+- `dependencies`: List of dependencies for Advanced or Solution Build apps.
+- `rebuild`: Set to `true` to recreate the Build App project in the target environment.
 
-##### Settings:
-- `rebuild: true` (if you want the project to be recreated in the target environment along with the app migration, only applicable for Build App)
-- `regression`: not available currently
+**For creating new app or add a Version in Source:**
+- Leave `app_id` blank.
+- Provide `app_details` including the app's name, version, description, and release notes.
 
-##### Release Notes:
-- Notes of your change in the app (required)
+**Release Notes:**
+- Document the changes made to the app (this is required).
 
 ---
 
@@ -136,7 +135,13 @@ Modify the `config.json` file with your project details.
         "workspace": "CI-CD",
         "app_id": "a56eb7e0-657d-497d-8c32-0c41d6314554",
         "deployment_id": "0194a7fa-7474-7a0b-9b88-78f82c0684c6",
-        "dependencies": ["model_DL_ca58a1844ac048a297157de827858c6b==0.0.8"]
+        "dependencies": ["model_DL_ca58a1844ac048a297157de827858c6b==0.0.8"],
+        "app_details": {
+          "name": "DL Test",
+          "version": "0.0.2",
+          "description": "description",
+          "release_notes": "release notes"
+        }
     },
     "target": {
         "org": "SolEng",

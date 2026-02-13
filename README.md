@@ -57,13 +57,21 @@ To enable the CI/CD workflow, configure the following secrets in your GitHub rep
       "name": "<App Name>",
       "version": "<Version>",
       "description": "<Description>",
-      "release_notes": "<Release Notes for this app version>"
+      "release_notes": "<Release Notes for this app version>",
+      "state": "PRODUCTION" | "ACTIVE"
     }
   },
   "target": {
     "org": "<Target Organization>",
     "workspace": "<Target Workspace>",
-    "project_id": "<Target Project ID>"
+    "project_id": "<Target Project ID>",
+    "app_details": {
+      "name": "<App Name>",
+      "version": "<Version>",
+      "description": "<Description>",
+      "release_notes": "<Release Notes>",
+      "state": "PRODUCTION" | "ACTIVE"
+    }
   },
   "settings": {
     "rebuild": true/false
@@ -92,6 +100,9 @@ To enable the CI/CD workflow, configure the following secrets in your GitHub rep
 **For creating new app or add a Version in Source:**
 - Leave `app_id` blank.
 - Provide `app_details` including the app's name, version, description, and release notes.
+
+**Target App Details (Optional):**
+- The `target.app_details` section allows you to configure app settings when publishing to the target environment to allow you to explicitly control the target app settings.
 
 **Release Notes:**
 - Document the changes made to the app (this is required).
@@ -140,13 +151,21 @@ Modify the `config.json` file with your project details.
           "name": "DL Test",
           "version": "0.0.2",
           "description": "description",
-          "release_notes": "release notes"
+          "release_notes": "release notes",
+          "state": "ACTIVE"
         }
     },
     "target": {
         "org": "SolEng",
         "workspace": "CI-CD",
-        "project_id": "a56eb7e0-657d-497d-8c32-0c41d6314554"
+        "project_id": "a56eb7e0-657d-497d-8c32-0c41d6314554",
+        "app_details": {
+          "name": "DL Test",
+          "version": "0.0.2",
+          "description": "description",
+          "release_notes": "release notes",
+          "state": "PRODUCTION"
+        }
     },
     "settings": {
         "rebuild": false
